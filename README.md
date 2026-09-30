@@ -42,6 +42,7 @@ module "example" {
 | Name | Version |
 | ---- | ------- |
 | aws | >= 4.9 |
+| aws.master | >= 4.9 |
 | terraform | n/a |
 
 ## Modules ##
@@ -52,7 +53,11 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
+| [aws_organizations_policy.block_anthropic_models](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy) | resource |
+| [aws_organizations_policy_attachment.block_anthropic_models_root](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy_attachment) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.block_anthropic_models_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_organizations_organization.cool](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 | [terraform_remote_state.master](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs ##
