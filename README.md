@@ -70,7 +70,9 @@ No modules.
 
 ## Outputs ##
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| block\_anthropic\_models\_scp | The service control policy (SCP) that blocks all usage of Anthropic models in Amazon Bedrock. |
 <!-- END_TF_DOCS -->
 
 ## Notes ##
