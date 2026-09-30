@@ -29,10 +29,6 @@ module "example" {
 }
 ```
 
-## Examples ##
-
-- [Basic usage](https://github.com/cisagov/cool-master-org-policies/tree/develop/examples/basic_usage)
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
@@ -43,9 +39,7 @@ module "example" {
 
 ## Providers ##
 
-| Name | Version |
-| ---- | ------- |
-| aws | >= 4.9 |
+No providers.
 
 ## Modules ##
 
@@ -53,11 +47,7 @@ No modules.
 
 ## Resources ##
 
-| Name | Type |
-| ---- | ---- |
-| [aws_instance.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_ami.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_default_tags.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/default_tags) | data source |
+No resources.
 
 ## Inputs ##
 
@@ -70,20 +60,13 @@ No modules.
 
 ## Outputs ##
 
-| Name | Description |
-| ---- | ----------- |
-| arn | The EC2 instance ARN. |
-| availability\_zone | The AZ where the EC2 instance is deployed. |
-| id | The EC2 instance ID. |
-| private\_ip | The private IP of the EC2 instance. |
-| subnet\_id | The ID of the subnet where the EC2 instance is deployed. |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## Notes ##
 
 Running `pre-commit` requires running `terraform init` in every directory that
-contains Terraform code. In this repository, these are the main directory and
-every directory under `examples/`.
+contains Terraform code. In this repository, this is just the main directory.
 
 ## New Repositories from a Skeleton ##
 
