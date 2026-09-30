@@ -39,7 +39,10 @@ module "example" {
 
 ## Providers ##
 
-No providers.
+| Name | Version |
+| ---- | ------- |
+| aws | >= 4.9 |
+| terraform | n/a |
 
 ## Modules ##
 
@@ -47,7 +50,10 @@ No modules.
 
 ## Resources ##
 
-No resources.
+| Name | Type |
+| ---- | ---- |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [terraform_remote_state.master](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs ##
 
