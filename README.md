@@ -4,30 +4,73 @@
 [![License](https://img.shields.io/github/license/cisagov/cool-master-org-policies)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/cool-master-org-policies/workflows/CodeQL/badge.svg)](https://github.com/cisagov/cool-master-org-policies/actions/workflows/codeql-analysis.yml)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) [Terraform
-module](https://www.terraform.io/docs/modules/index.html) GitHub
-repository started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
+This is a Terraform module for creating AWS Organizations policies in a COOL
+Master account that apply across the entire COOL AWS organization.
 
-See the [Terraform
-documentation](https://www.terraform.io/docs/modules/index.html) for
-more details on Terraform modules and the standard module structure.
+The following policies are currently managed by this module:
+
+- A service control policy (SCP) that blocks all usage of Anthropic models in
+  Amazon Bedrock, attached to the root of the organization.
+
+## Pre-requisites ##
+
+- [Terraform](https://www.terraform.io/) installed on your system.
+- An accessible AWS S3 bucket to store Terraform state
+  (specified in [backend.tf](backend.tf)).
+- An accessible AWS DynamoDB database to store the Terraform state lock
+  (specified in [backend.tf](backend.tf)).
+- Access to all of the Terraform remote states specified in
+  [remote_states.tf](remote_states.tf).
+- The Master account's `ProvisionAccount` role must have the permissions to
+  manage service control policies (SCPs) that are defined in
+  [cisagov/cool-accounts](https://github.com/cisagov/cool-accounts).  Those
+  permissions only apply to SCPs whose `Application` tag matches the value
+  expected by that repository (`COOL - Master Org Policies` by default), so the
+  `Application` tag in your `tags` variable must use that value.
 
 ## Usage ##
 
-```hcl
-module "example" {
-  source = "github.com/cisagov/cool-master-org-policies?ref=v0.0.1"
+For the purposes of these instructions, assume the environment is named "dev";
+replace "dev" in the instructions below with your environment name if needed.
 
-  aws_region            = "us-west-1"
-  aws_availability_zone = "b"
-  subnet_id             = "subnet-0123456789abcdef0"
-}
-```
+1. Create a backend configuration file named `dev.tfconfig` containing the name
+   of the bucket where Terraform state is stored for that environment.
+
+    ```hcl
+    bucket = "my-dev-terraform-state-bucket"
+    ```
+
+1. Initialize the Terraform backend for the "dev" environment using your backend
+   configuration file:
+
+    ```console
+    terraform init -upgrade -backend-config=dev.tfconfig
+    ```
+
+    > [!NOTE] When performing this step for additional environments (i.e. not
+    > your first environment), use the `-reconfigure` flag:
+    >
+    > ```console
+    > terraform init -upgrade -backend-config=other-env.tfconfig -reconfigure
+    > ```
+
+1. Create a Terraform workspace (if you haven't already done so) by running
+   `terraform workspace new dev`
+1. Create a `dev.tfvars` file with all required variables and any optional
+   variables that you wish to override (see [Inputs](#inputs) below for
+   details):
+
+   ```console
+   tags = {
+     Team        = "Your Team Name"
+     Application = "COOL - Master Org Policies"
+     Workspace   = "dev"
+   }
+
+   terraform_state_bucket = "my-terraform-state-bucket"
+   ```
+
+1. Run the command `terraform apply -var-file=dev.tfvars`.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements ##
@@ -79,13 +122,6 @@ No modules.
 
 Running `pre-commit` requires running `terraform init` in every directory that
 contains Terraform code. In this repository, this is just the main directory.
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
 
 ## Contributing ##
 
