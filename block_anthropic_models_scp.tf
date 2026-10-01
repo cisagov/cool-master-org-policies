@@ -28,6 +28,7 @@ data "aws_iam_policy_document" "block_anthropic_models_doc" {
     ]
     effect = "Deny"
     resources = [
+      "arn:aws:bedrock:*:*:default-prompt-router/anthropic.*",
       "arn:aws:bedrock:*::foundation-model/anthropic.*",
       "arn:aws:bedrock:*:*:inference-profile/*anthropic.*",
     ]
