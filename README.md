@@ -108,7 +108,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
-| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
+| tags | Tags to apply to all AWS resources created.  The Application tag must be "COOL - Master Org Policies" (see the Pre-requisites section of the README). | `map(string)` | n/a | yes |
 | terraform\_state\_bucket | The name of the S3 bucket where Terraform state is stored. | `string` | n/a | yes |
 
 ## Outputs ##
