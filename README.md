@@ -7,10 +7,7 @@
 This is a Terraform module for creating AWS Organizations policies in a COOL
 Master account that apply across the entire COOL AWS organization.
 
-The following policies are currently managed by this module:
-
-- A service control policy (SCP) that blocks all usage of Anthropic models in
-  Amazon Bedrock, attached to the root of the organization.
+No policies are currently managed by this module.
 
 ## Pre-requisites ##
 
@@ -96,10 +93,7 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [aws_organizations_policy.block_anthropic_models](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy) | resource |
-| [aws_organizations_policy_attachment.block_anthropic_models_root](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy_attachment) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_iam_policy_document.block_anthropic_models_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_organizations_organization.cool](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 | [terraform_remote_state.master](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
@@ -113,9 +107,7 @@ No modules.
 
 ## Outputs ##
 
-| Name | Description |
-| ---- | ----------- |
-| block\_anthropic\_models\_scp | The service control policy (SCP) that blocks all usage of Anthropic models in Amazon Bedrock. |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## Notes ##
